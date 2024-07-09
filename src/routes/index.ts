@@ -5,5 +5,5 @@ export function registerRoutes(app: Express) {
     app.get("/health", (req: Request, res: Response) => {
         res.status(200).json({ message: "Server is running properly updated" });
     });
-    app.use('/user', authRouter)
+    app.use('/auth', authRouter)
 }
