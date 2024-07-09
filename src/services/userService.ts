@@ -2,7 +2,7 @@ import { ITaskModel } from '../daos/TaskDao';
 import UserDao, { IUserModel } from '../daos/UserDao'
 import { IUser } from "../model/User";
 import { UnableToGetUserTasks } from '../utils/taskErrors';
-import { UnableToFindUser, UnableToFindUsers, UnableToRegisterUser } from '../utils/userErrors';
+import { UnableToDeleteAccount, UnableToFindUser, UnableToFindUsers, UnableToRegisterUser } from '../utils/userErrors';
 
 export const createUser = async (newUser: IUser):Promise<IUserModel | undefined> => {
     try {
@@ -41,6 +41,15 @@ export const getUserTasks = async (userId: string): Promise<ITaskModel[] | undef
         }
     } catch (err: any) {
         throw new UnableToGetUserTasks(`unable to get user tasks: ${err.message}`)
+    }
+}
+
+export const deleteUserAccount = async (id: string) => {
+    try {
+        const deletedUserAccount = await UserDao.findByIdAndDelete(id)
+        return deletedUserAccount
+    } catch (error) {
+        throw new UnableToDeleteAccount(`unable to delete account ${id}`)
     }
 }
 

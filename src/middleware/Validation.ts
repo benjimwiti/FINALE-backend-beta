@@ -28,7 +28,10 @@ export const Schemas = {
     user:{
         get: Joi.object({
             id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
-        })
+        }),
+        delete: Joi.object({
+            id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        }),
     },
     task: {
         create: Joi.object<ITask>({
