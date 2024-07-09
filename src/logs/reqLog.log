@@ -1,0 +1,15 @@
+20240709	09:36:56	e41c3b02-8cc9-4b1f-a72d-ab845597ef3d	POST	/auth/register	undefined
+20240709	10:11:18	749e3713-2540-48d2-82d9-85a261030d86	POST	/auth/register	undefined
+20240709	11:56:24	a7c9ab8f-32d1-4e75-b4b9-f48cea27d007	POST	/tasks	undefined
+20240709	11:59:13	d9cf5b86-cb62-495e-a701-bd253a3f8f5d	POST	/tasks	undefined
+20240709	12:47:01	fd7e7924-0ce0-41a9-9ca9-4c8088a77a1a	POST	/user/register	undefined
+20240709	12:48:42	2dadd348-5711-4361-8370-d68d61498e13	POST	/auth/register	undefined
+20240709	12:49:43	0c0ce743-f4f1-416d-8d9d-a9fba4516bbd	GET	/user/668d077a636c3275be6acd03	undefined
+20240709	12:52:03	5d1768f9-2f39-43ac-8627-9c2faceca7fd	GET	/user/668d077a636c3275be6acd03	undefined
+20240709	13:01:26	bad4ae52-8150-4b81-b27f-f3646e7923ff	GET	/user/668d077a636c3275be6acd03	undefined
+20240709	13:09:41	0b9f706e-3eb2-4bc4-a146-068d0e2b3ab1	GET	/user	undefined
+20240709	13:25:49	2c9f8d25-ae33-4b83-ad2e-bc317962edc0	DELETE	/user/668c2ebb63e047560f5edc0e	undefined
+20240709	13:37:11	afecfd81-2de5-421e-9beb-c06dd82e17e6	GET	/user/668d077a636c3275be6acd03	undefined
+20240709	13:37:15	8a7c0673-9741-47e0-bf15-1d58e6999b7c	GET	/user	undefined
+20240709	13:45:54	ee8f758b-f532-4a53-894f-f1b8d03dd424	GET	/user	http://localhost:5173
+20240709	13:45:54	d3c4c265-6ba9-4f26-9add-accc4407b12b	GET	/user	http://localhost:5173
