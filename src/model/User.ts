@@ -1,4 +1,8 @@
+import { ITask } from "./Task";
+
 export interface IUser {
-    firstname: string;
-    lastname: string;
+    name: string;
+    email: string;
+    password: string;
+    tasks: Array<ITask>;
 }
