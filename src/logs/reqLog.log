@@ -9,3 +9,7 @@
 20240709	13:01:26	bad4ae52-8150-4b81-b27f-f3646e7923ff	GET	/user/668d077a636c3275be6acd03	undefined
 20240709	13:09:41	0b9f706e-3eb2-4bc4-a146-068d0e2b3ab1	GET	/user	undefined
 20240709	13:25:49	2c9f8d25-ae33-4b83-ad2e-bc317962edc0	DELETE	/user/668c2ebb63e047560f5edc0e	undefined
+20240709	13:37:11	afecfd81-2de5-421e-9beb-c06dd82e17e6	GET	/user/668d077a636c3275be6acd03	undefined
+20240709	13:37:15	8a7c0673-9741-47e0-bf15-1d58e6999b7c	GET	/user	undefined
+20240709	13:45:54	ee8f758b-f532-4a53-894f-f1b8d03dd424	GET	/user	http://localhost:5173
+20240709	13:45:54	d3c4c265-6ba9-4f26-9add-accc4407b12b	GET	/user	http://localhost:5173

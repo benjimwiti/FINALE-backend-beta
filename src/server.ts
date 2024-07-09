@@ -13,6 +13,7 @@ import { registerRoutes } from "./routes";
 import connectDB from "./config/dbConn";
 import errorHandler from './middleware/errorHandler';
 import { logger } from './middleware/logger';
+import corsOptions from './config/corsOptions';
 
 
 /* =========================== VARIABLES ============================= */
@@ -23,7 +24,7 @@ const app = express()
 connectDB()
 app.use(logger)
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 
 /* =========================== ROUTING ============================= */
 registerRoutes(app)
