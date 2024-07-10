@@ -1,8 +1,9 @@
-import { ITaskModel } from '../daos/TaskDao';
+import mongoose from 'mongoose';
+import { ITaskModel, objectId } from '../daos/TaskDao';
 import UserDao, { IUserModel } from '../daos/UserDao'
 import { IUser } from "../model/User";
 import { UnableToGetUserTasks } from '../utils/taskErrors';
-import { UnableToDeleteAccount, UnableToFindUser, UnableToFindUsers, UnableToRegisterUser } from '../utils/userErrors';
+import { UnableToAppendTask, UnableToDeleteAccount, UnableToFindUser, UnableToFindUsers, UnableToRegisterUser, UnableToUpdateAccount } from '../utils/userErrors';
 
 export const createUser = async (newUser: IUser):Promise<IUserModel | undefined> => {
     try {
@@ -14,7 +15,7 @@ export const createUser = async (newUser: IUser):Promise<IUserModel | undefined>
     }
 }
 
-export const findUserById = async (userId: string):Promise<IUserModel | undefined> => {
+export const findUserById = async (userId: string ):Promise<IUserModel | undefined> => {
     try {
         const user = await UserDao.findById(userId)
         if(user) return user
@@ -25,7 +26,7 @@ export const findUserById = async (userId: string):Promise<IUserModel | undefine
 
 export const findAllUsers = async ():Promise<IUserModel[] | undefined> => {
     try {
-        const users = await UserDao.find()
+        const users = await UserDao.find().lean() //optimization
         if(users) return users
     } catch (err: any) {
         throw new UnableToFindUsers(`unable to find Users; ${err.message}`)
@@ -34,7 +35,7 @@ export const findAllUsers = async ():Promise<IUserModel[] | undefined> => {
 
 export const getUserTasks = async (userId: string): Promise<ITaskModel[] | undefined> => {
     try {
-        const user = await UserDao.findById(userId)
+        const user = await UserDao.findById(userId).lean()
         if(user) {
             const userTasks = user.tasks as ITaskModel[]
             return userTasks
@@ -53,19 +54,35 @@ export const deleteUserAccount = async (id: string) => {
     }
 }
 
+export interface IUserUpdate {
+    name?: string,
+    email?: string,
+    password?: string
+}
 
 
-// UserService
-// import UserDao from '../daos/UserDao';
-// import { IUser } from "../model/User";
-// import { UnableToRegisterUser } from '../utils/userErrors';
+export const updateUserAccount = async (_id: string, updates: IUserUpdate) => {
+    try {
+        const {name, email, password} = updates
+        const updatedUser = await UserDao.findByIdAndUpdate(_id, updates, {new: true})
+        return updatedUser
+    } catch (error:any) {
+        throw new UnableToUpdateAccount(`unable to update ${error.message}`)
+    }
+}
 
-// export const createUser = async (newUser: IUser) => {
-//     try {
-//         const createdUser = new UserDao(newUser);
-//         const savedUser = await createdUser.save();
-//         if (savedUser) return savedUser;
-//     } catch (error: any) {
-//         throw new UnableToRegisterUser("Couldn't save the user to MongoDB");
-//     }
-// };
+export const pushToTaskList = async (userId: string, savedTask: ITaskModel) => {
+    try {
+        let user = await findUserById(userId)
+        if (user) {
+            const existingTasks = user.tasks ||  []
+            const newTaskList = [savedTask, ...existingTasks]
+            user.tasks = newTaskList
+            const updatedUser = await user.save()
+            const { name, tasks } = updatedUser
+            return { name, tasks }
+        }
+    } catch (error:any) {
+        throw new UnableToAppendTask(`unable to append task ${error.message}`)
+    }
+}

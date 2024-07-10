@@ -37,8 +37,12 @@ export const Schemas = {
         create: Joi.object<ITask>({
             title: Joi.string().required(),
             description: Joi.string().required(),
+            completed: Joi.boolean(),
             labels: Joi.array(),
             userId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+        }),
+        id: Joi.object({
+            id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
         })
     }
 }

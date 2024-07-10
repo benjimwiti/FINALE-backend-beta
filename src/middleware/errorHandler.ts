@@ -1,6 +1,7 @@
 import { logEvents } from "./logger"
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express"
-import { UnableToRegisterUser } from "../utils/userErrors"
+import { UnableToAppendTask, UnableToCreateTask, UnableToDeleteAccount, UnableToFindUser, UnableToFindUsers, UnableToRegisterUser, UnableToUpdateAccount } from "../utils/userErrors"
+import { UnableToDeleteTask, UnableToFetchUserTasks, UnableToModifyTask } from "../utils/taskErrors"
 
 const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, next:NextFunction) => {
     console.log('error handler')
@@ -17,7 +18,44 @@ const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
             message: err.message,
             isError: true 
         })
-    } 
+    } else if (err instanceof UnableToCreateTask) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToFindUser) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToFindUsers) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToDeleteAccount) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToUpdateAccount) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToModifyTask) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToDeleteTask) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToFetchUserTasks) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToAppendTask) {
+        res.status(400).json({
+            message: err.message
+        })
+    }
+
     
     else {
     res.status(status).json({

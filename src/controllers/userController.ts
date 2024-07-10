@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserDao, { IUserModel } from "../daos/UserDao";
-import { deleteUserAccount, findAllUsers, findUserById } from "../services/userService";
+import { deleteUserAccount, findAllUsers, findUserById, updateUserAccount } from "../services/userService";
 
 export const getUser = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -17,6 +17,7 @@ export const getAllUsers = async (req: Request, res:Response) => {
     const users = await findAllUsers()
     res.status(200).json({
         message: `here are all app users`,
+        usersCount: users?.length,
         users
     })
 }
@@ -27,5 +28,15 @@ export const deleteAccount = async (req: Request, res: Response) => {
     res.status(200).json({
         message: `account ${id} deleted successfully`,
         deletedUserAccount
+    })
+}
+
+export const updateAccount = async (req: Request, res: Response) => {
+    const { id: _id} = req.params
+    const updates = req.body
+    const updatedUserAccount = await updateUserAccount(_id, updates)
+    res.status(200).json({
+        message: `updated account ${_id} successfully`,
+        updatedUserAccount
     })
 }
