@@ -14,6 +14,7 @@ import connectDB from "./config/dbConn";
 import errorHandler from './middleware/errorHandler';
 import { logger } from './middleware/logger';
 import corsOptions from './config/corsOptions';
+import cookieParser from 'cookie-parser'
 
 
 /* =========================== VARIABLES ============================= */
@@ -23,6 +24,7 @@ const app = express()
 /* =========================== MIDDLEWARE ============================= */
 connectDB()
 app.use(logger)
+app.use(cookieParser())
 app.use(express.json())
 app.use(cors(corsOptions))
 

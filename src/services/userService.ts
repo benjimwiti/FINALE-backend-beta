@@ -3,7 +3,10 @@ import { ITaskModel, objectId } from '../daos/TaskDao';
 import UserDao, { IUserModel } from '../daos/UserDao'
 import { IUser } from "../model/User";
 import { UnableToGetUserTasks } from '../utils/taskErrors';
-import { UnableToAppendTask, UnableToDeleteAccount, UnableToFindUser, UnableToFindUsers, UnableToRegisterUser, UnableToUpdateAccount } from '../utils/userErrors';
+import { ErrorWhileRefreshingToken, UnableToAppendTask, UnableToAuthenticatePassword, UnableToDeleteAccount, UnableToFindUser, UnableToFindUserByEmail, UnableToFindUsers, UnableToRegisterUser, UnableToUpdateAccount } from '../utils/userErrors';
+import argon2 from 'argon2';
+import jwt from 'jsonwebtoken';
+import { refreshTokenSecret } from '../config/TSenv';
 
 export const createUser = async (newUser: IUser):Promise<IUserModel | undefined> => {
     try {
@@ -84,5 +87,46 @@ export const pushToTaskList = async (userId: string, savedTask: ITaskModel) => {
         }
     } catch (error:any) {
         throw new UnableToAppendTask(`unable to append task ${error.message}`)
+    }
+}
+
+export const authenticatePassword = async (userId:string , password:string) => {
+    try {
+        const user = await UserDao.findById(userId).lean()
+        const hash = user?.password as string
+        const isValid = argon2.verify(hash, password)
+        return isValid
+    } catch (error:any) {
+        throw new UnableToAuthenticatePassword(`unable to authenticate user ${error.message}`)
+    }
+}
+
+export const findUserByEmail = async (email: string) => {
+    try {
+        const user = await UserDao.findOne({email}) as IUserModel
+        const id = user?._id as string
+        return { user, id }
+    } catch (error:any) {
+        throw new UnableToFindUserByEmail(`unable to find user by email ${error.message}`)
+    }
+}
+
+export const refreshTokenLogic = async (err: any, decoded: any) => {
+    try {
+        const { user } = await findUserByEmail(decoded.email)
+        const accessToken = jwt.sign(
+            {
+                "UserInfo": {
+                    "name": user.name,
+                    "email": user.email
+                }
+            },
+            refreshTokenSecret,
+            { expiresIn: '1d' }
+        )
+        return accessToken
+        
+    } catch (error: any) {
+        throw new ErrorWhileRefreshingToken(`unable to refresh access Token ${error.message}`)
     }
 }

@@ -1,9 +1,11 @@
 import express from "express";
 const router = express.Router();
 
-import { handleRegister } from "../controllers/authController";
+import { handleLogin, handleRegister, handleTokenRefresh } from "../controllers/authController";
 
-router.route('/register')
-    .post(handleRegister)
+router.post('/register', handleRegister)
+router.post('/login', handleLogin )
+router.get('/refresh' , handleTokenRefresh)
+    
 
 export default router

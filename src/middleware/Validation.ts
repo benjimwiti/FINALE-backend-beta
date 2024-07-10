@@ -32,6 +32,10 @@ export const Schemas = {
         delete: Joi.object({
             id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
         }),
+        login: Joi.object({
+            email: Joi.string().email().required(),
+            password: Joi.string().required()
+        })
     },
     task: {
         create: Joi.object<ITask>({

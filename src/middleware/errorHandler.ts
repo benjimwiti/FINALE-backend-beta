@@ -1,6 +1,6 @@
 import { logEvents } from "./logger"
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express"
-import { UnableToAppendTask, UnableToCreateTask, UnableToDeleteAccount, UnableToFindUser, UnableToFindUsers, UnableToRegisterUser, UnableToUpdateAccount } from "../utils/userErrors"
+import { CookieIsAbsent, ErrorWhileRefreshingToken, UnableToAppendTask, UnableToAuthenticatePassword, UnableToCreateTask, UnableToDeleteAccount, UnableToFindUser, UnableToFindUserByEmail, UnableToFindUsers, UnableToRegisterUser, UnableToUpdateAccount } from "../utils/userErrors"
 import { UnableToDeleteTask, UnableToFetchUserTasks, UnableToModifyTask } from "../utils/taskErrors"
 
 const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, next:NextFunction) => {
@@ -54,12 +54,29 @@ const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
         res.status(400).json({
             message: err.message
         })
+    } else if (err instanceof UnableToFindUserByEmail) {
+        res.status(400).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToAuthenticatePassword) {
+        res.status(401).json({
+            message: err.message
+        })
+    } else if (err instanceof CookieIsAbsent) {
+        res.status(401).json({
+            message: err.message
+        })
+    } else if (err instanceof ErrorWhileRefreshingToken) {
+        res.status(401).json({
+            message: err.message
+        })
     }
+
 
     
     else {
     res.status(status).json({
-        message: `error Handler err message`
+        message: `error Handler some undefined error occured ${err.message}`
     })
 }
 }
