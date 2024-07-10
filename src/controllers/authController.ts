@@ -1,43 +1,23 @@
 import { NextFunction, Request, Response } from "express"
 import { createUser } from "../services/userService"
 import { UnableToRegisterUser } from "../utils/userErrors"
+import argon2 from 'argon2'
 
 
 export const handleRegister = async (req: Request, res: Response, next: NextFunction) => {
-    const newUser = req.body
-   // try {
+    let newUser = req.body
+    const hash = await argon2.hash(newUser.password, {
+        type: argon2.argon2id,
+        memoryCost: 2 ** 4, // 64 MiB
+        timeCost: 4, // Number of iterations
+        parallelism: 2, // Number of threads
+        hashLength: 32, // Length of the hash
+
+    })
+
         const savedUser = await createUser(newUser)
         res.status(201).json({
             message: `user successfully created`,
             savedUser
         }) 
-   // } catch (error:any) {
-        // res.status(500).json({
-        //     message: `unable to register user`,
-        //     error: error.message
-        // })
-        // next(error)
-    // }
     }
-
-// authController
-// import { NextFunction, Request, Response } from "express";
-// import { createUser } from "../services/userService";
-// import { UnableToRegisterUser } from "../utils/userErrors";
-
-// export const handleRegister = async (req: Request, res: Response, next: NextFunction) => {
-//     const newUser = req.body;
-//     try {
-//         const savedUser = await createUser(newUser);
-//         res.status(201).json({
-//             message: "User successfully created",
-//             savedUser
-//         });
-//     } catch (error: any) {
-//         res.status(500).json({
-//             message: "Unable to register user",
-//             error: error.message
-//         });
-//         next(error);
-//     }
-// };
