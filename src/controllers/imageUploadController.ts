@@ -15,10 +15,11 @@ export const handleImageUpload = (req:Request, res:Response) => {
         if (req.file == undefined) {
             res.status(400).send({ message: "No file selected!" });
         } else {
-            const registeredProfilePhoto = await registerProfilePhoto(userId, req.file.filename)
+            const updatedUser = await registerProfilePhoto(userId, req.file.filename)
             res.send({
             message: "File uploaded!",
             file: `avatars/${req.file.filename}`,
+            updatedUser
             });
         }
         }

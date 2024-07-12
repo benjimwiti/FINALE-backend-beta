@@ -8,6 +8,7 @@ import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 import { refreshTokenSecret } from '../config/TSenv';
 import { pwdHasher } from './authServices';
+import { deleteProfilePic } from './imageServices';
 
 export const createUser = async (newUser: IUser):Promise<IUserModel | undefined> => {
     try {
@@ -107,9 +108,12 @@ export const registerProfilePhoto = async (userId: string, fileName: string) => 
     try {
         const user = await findUserById(userId) as IUserModel
         const initialAvatar = user.avatar
-        if(initialAvatar) {/* delete file image */}
+        if(initialAvatar) {
+            await deleteProfilePic(initialAvatar)
+        }
         user.avatar = fileName
         const updatedUser = await user.save()
+        return updatedUser
         //delete 
     } catch (error:any) {
         throw new UnableToRegisterAvatar(`unable to register profile photo ${error.message}`)

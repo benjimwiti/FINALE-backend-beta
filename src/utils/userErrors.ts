@@ -63,3 +63,13 @@ export class UnableToRegisterAvatar extends Error {
         super(message)
     }
 }
+export class ErrorReadingAvatarImageFile extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+export class ErrorUnlinkingAvatarImageFile extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}

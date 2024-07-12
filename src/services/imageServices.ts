@@ -2,6 +2,7 @@ import multer from 'multer'
 import path from 'path'
 import { promises as fsPromises} from 'fs'
 import fs from 'fs'
+import { ErrorReadingAvatarImageFile, ErrorUnlinkingAvatarImageFile } from '../utils/userErrors'
 const avatarsPath = path.join(__dirname, "..", "avatar")
 
 const configureAvatarPath = async () => {
@@ -20,10 +21,12 @@ const storage = multer.diskStorage({
         cb(null, avatarsPath);
     },
     filename: (req, file, cb) => { //configures req.file
+        const newFileName = file.fieldname + "-" + Date.now() + path.extname(file.originalname)
         cb(
         null,
-        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+        newFileName
         );
+        console.log(`configured file name to; ${newFileName}`)
     },
     });
 
@@ -50,10 +53,24 @@ fileFilter: (req, file, cb) => {
 
 
 export const findUserProfilePic = async (fileName: string) => {
-    const imagePath = path.join(avatarsPath, fileName)
-    console.log(imagePath)
+    try {
+        const imagePath = path.join(avatarsPath, fileName)
+        console.log("reading", imagePath)
         const file = await fsPromises.readFile(imagePath);
         return file
+    } catch (error:any) {
+        throw new ErrorReadingAvatarImageFile(`error reading avatar image File ${error.message}`)
+    }
+}
+
+export const deleteProfilePic = async (fileName: string) => {
+    try {
+        const imagePath = path.join(avatarsPath, fileName)
+        console.log("deleting",imagePath)
+        await fsPromises.unlink(imagePath);
+    } catch (error:any) {
+        throw new ErrorUnlinkingAvatarImageFile(`error deleting avatar image File ${error.message}`)
+    }
 }
 
 export const getContentType = (filename: string) => {

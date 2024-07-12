@@ -1,6 +1,6 @@
 import { logEvents } from "./logger"
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express"
-import { CookieIsAbsent, ErrorWhileRefreshingToken, UnableToAppendTask, UnableToAuthenticatePassword, UnableToCreateTask, UnableToDeleteAccount, UnableToFindUser, UnableToFindUserByEmail, UnableToFindUsers, UnableToRegisterAvatar, UnableToRegisterUser, UnableToUpdateAccount } from "../utils/userErrors"
+import { CookieIsAbsent, ErrorReadingAvatarImageFile, ErrorUnlinkingAvatarImageFile, ErrorWhileRefreshingToken, UnableToAppendTask, UnableToAuthenticatePassword, UnableToCreateTask, UnableToDeleteAccount, UnableToFindUser, UnableToFindUserByEmail, UnableToFindUsers, UnableToRegisterAvatar, UnableToRegisterUser, UnableToUpdateAccount } from "../utils/userErrors"
 import { UnableToCheckOffTask, UnableToDeleteTask, UnableToFetchTask, UnableToFetchUserTasks, UnableToModifyTask } from "../utils/taskErrors"
 
 const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, next:NextFunction) => {
@@ -85,6 +85,14 @@ const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
             message: err.message
         })
     } else if (err instanceof UnableToRegisterAvatar) {
+        res.status(500).json({
+            message: err.message
+        })
+    } else if (err instanceof ErrorReadingAvatarImageFile) {
+        res.status(500).json({
+            message: err.message
+        })
+    } else if (err instanceof ErrorUnlinkingAvatarImageFile) {
         res.status(500).json({
             message: err.message
         })
