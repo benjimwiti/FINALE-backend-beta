@@ -9,7 +9,7 @@
     "predev": "npm run build",
     "dev": "concurrently \"tsc -w\" \"nodemon ./dist/server.js\"",
     "ben-dev": "nodemon --exec ts-node  src/server.ts",
-    "test": "playwright test"
+    "test": "npx playwright test"
   },
   "keywords": [],
   "author": "",

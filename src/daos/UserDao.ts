@@ -22,6 +22,11 @@ const userSchema = new Schema({
     tasks: {
         type: [taskSchema] ,
         default: []
+    },
+    avatar: {
+        type: String,
+        required: false,
+        default: ''
     }
 },
 {

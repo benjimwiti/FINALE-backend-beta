@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 import { ITaskModel, objectId } from '../daos/TaskDao';
 import UserDao, { IUserModel } from '../daos/UserDao'
-import { IUser } from "../model/User";
+import { IUser, IUserUpdate } from "../model/User";
 import { UnableToGetUserTasks } from '../utils/taskErrors';
-import { ErrorWhileRefreshingToken, UnableToAppendTask, UnableToAuthenticatePassword, UnableToDeleteAccount, UnableToFindUser, UnableToFindUserByEmail, UnableToFindUsers, UnableToRegisterUser, UnableToUpdateAccount } from '../utils/userErrors';
+import { ErrorWhileRefreshingToken, UnableToAppendTask, UnableToAuthenticatePassword, UnableToDeleteAccount, UnableToFindUser, UnableToFindUserByEmail, UnableToFindUsers, UnableToRegisterAvatar, UnableToRegisterUser, UnableToUpdateAccount } from '../utils/userErrors';
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 import { refreshTokenSecret } from '../config/TSenv';
+import { pwdHasher } from './authServices';
 
 export const createUser = async (newUser: IUser):Promise<IUserModel | undefined> => {
     try {
@@ -57,17 +58,18 @@ export const deleteUserAccount = async (id: string) => {
     }
 }
 
-export interface IUserUpdate {
-    name?: string,
-    email?: string,
-    password?: string
-}
 
 
 export const updateUserAccount = async (_id: string, updates: IUserUpdate) => {
     try {
         const {name, email, password} = updates
-        const updatedUser = await UserDao.findByIdAndUpdate(_id, updates, {new: true})
+        let hash;
+        if(password) {
+            hash = await pwdHasher(password)
+        } else {
+            hash = password
+        }
+        const updatedUser = await UserDao.findByIdAndUpdate(_id, {name, email, password:hash}, {new: true})
         return updatedUser
     } catch (error:any) {
         throw new UnableToUpdateAccount(`unable to update ${error.message}`)
@@ -90,16 +92,6 @@ export const pushToTaskList = async (userId: string, savedTask: ITaskModel) => {
     }
 }
 
-export const authenticatePassword = async (userId:string , password:string) => {
-    try {
-        const user = await UserDao.findById(userId).lean()
-        const hash = user?.password as string
-        const isValid = argon2.verify(hash, password)
-        return isValid
-    } catch (error:any) {
-        throw new UnableToAuthenticatePassword(`unable to authenticate user ${error.message}`)
-    }
-}
 
 export const findUserByEmail = async (email: string) => {
     try {
@@ -111,22 +103,16 @@ export const findUserByEmail = async (email: string) => {
     }
 }
 
-export const refreshTokenLogic = async (err: any, decoded: any) => {
+export const registerProfilePhoto = async (userId: string, fileName: string) => {
     try {
-        const { user } = await findUserByEmail(decoded?.email)
-        const accessToken = jwt.sign(
-            {
-                "UserInfo": {
-                    "name": user?.name,
-                    "email": user?.email
-                }
-            },
-            refreshTokenSecret,
-            { expiresIn: '1d' }
-        )
-        return accessToken
-        
-    } catch (error: any) {
-        throw new ErrorWhileRefreshingToken(`unable to refresh access Token ${error.message}`)
+        const user = await findUserById(userId) as IUserModel
+        const initialAvatar = user.avatar
+        if(initialAvatar) {/* delete file image */}
+        user.avatar = fileName
+        const updatedUser = await user.save()
+        //delete 
+    } catch (error:any) {
+        throw new UnableToRegisterAvatar(`unable to register profile photo ${error.message}`)
     }
+    
 }

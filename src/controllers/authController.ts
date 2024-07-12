@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express"
-import { authenticatePassword, createUser, findUserByEmail, refreshTokenLogic } from "../services/userService"
-import { CookieIsAbsent, UnableToRegisterUser } from "../utils/userErrors"
+import {createUser, findUserByEmail} from "../services/userService"
+import { authenticatePassword,  pwdHasher,  refreshTokenLogic } from "../services/authServices"
+import { CookieIsAbsent } from "../utils/userErrors"
 import argon2 from 'argon2'
 import jwt from 'jsonwebtoken'
 import { CustomRefreshCookies } from "../model/Cookies"
@@ -9,22 +10,15 @@ import { accessTokenSecret, refreshTokenSecret } from "../config/TSenv"
 
 export const handleRegister = async (req: Request, res: Response, next: NextFunction) => {
     let newUser = req.body
-    const hash = await argon2.hash(newUser.password, {
-        type: argon2.argon2id,
-        memoryCost: 2 ** 16, // 64 MiB
-        timeCost: 4, // Number of iterations
-        parallelism: 2, // Number of threads
-        hashLength: 32, // Length of the hash
-
-    })
+    const hash = await pwdHasher(newUser.password)
     newUser.password = hash
 
-        const savedUser = await createUser(newUser)
-        res.status(201).json({
-            message: `user successfully created`,
-            savedUser
-        }) 
-    }
+    const savedUser = await createUser(newUser)
+    res.status(201).json({
+        message: `user successfully created`,
+        savedUser
+    }) 
+}
 
 //LOGIN
 export const handleLogin = async (req: Request, res:Response) => {

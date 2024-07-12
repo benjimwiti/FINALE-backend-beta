@@ -32,7 +32,7 @@ export default defineConfig({
       //'Accept': 'application/vnd.github.v3+json',
       // Add authorization token to all requests.
       // Assuming personal access token available in the environment.
-     // 'authorization': `Bearer ${accessTokenSecret}`,
+    //  'authorization': `Bearer ${accessTokenSecret}`,
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',

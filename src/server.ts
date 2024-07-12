@@ -15,6 +15,7 @@ import errorHandler from './middleware/errorHandler';
 import { logger } from './middleware/logger';
 import corsOptions from './config/corsOptions';
 import cookieParser from 'cookie-parser'
+import { handleImageRetrieval } from './controllers/imageUploadController';
 
 
 /* =========================== VARIABLES ============================= */

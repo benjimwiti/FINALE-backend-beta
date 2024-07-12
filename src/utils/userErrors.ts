@@ -58,3 +58,8 @@ export class ErrorWhileRefreshingToken extends Error {
         super(message)
     }
 }
+export class UnableToRegisterAvatar extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
