@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { checkTask, createTask, deleteTask, fetchTask, /* fetchUserTasks ,*/ modifyTask } from "../services/taskServices";
 import TaskDao, { ITaskModel } from "../daos/TaskDao";
-import { pushToTaskList } from "../services/userService";
+import { getUserTasks, pushToTaskList } from "../services/userService";
 
 export const handleTaskCreation = async ( req:Request, res:Response ) => {
     const newTask = req.body
@@ -41,11 +41,11 @@ export const handleFetchTask = async ( req:Request, res:Response ) => {
     res.status(201).json(requestedTask)
 }
 
-// export const handleFetchUserTasks = async ( req:Request, res:Response ) => {
-//     const { userId } = req.params
-//     const userTasks = await fetchUserTasks(userId)
-//     res.status(200).json({
-//         message: `here are all your tasks`,
-//         userTasks
-//     })
-// }
+export const handleFetchUserTasks = async ( req:Request, res:Response ) => {
+    const { userId } = req.params
+    const userTasks = await getUserTasks(userId)
+    res.status(200).json({
+        message: `here are all your tasks`,
+        userTasks
+    })
+}

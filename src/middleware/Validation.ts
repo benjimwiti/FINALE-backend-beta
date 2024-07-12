@@ -35,6 +35,9 @@ export const Schemas = {
         login: Joi.object({
             email: Joi.string().email().required(),
             password: Joi.string().required()
+        }),
+        getAll: Joi.object({
+            userId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
         })
     },
     task: {

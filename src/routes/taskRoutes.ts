@@ -6,13 +6,10 @@ const router = express.Router()
 router.route('/')
     .post(ValidateSchema(Schemas.task.create, 'body'), handleTaskCreation)
 
-router.route('/:id')
+router.route('task/:id')
     .get(ValidateSchema(Schemas.task.id, 'params'), handleFetchTask)
     .put(ValidateSchema(Schemas.task.id, 'params'), handleTaskModification)
     .delete(ValidateSchema(Schemas.task.id, 'params'), handleTaskDeletion)
     .patch(ValidateSchema(Schemas.task.id,'params'), handleTaskCompletion)
-
-// router.route('/:userId')
-//     .get(ValidateSchema(Schemas.task.id, 'params'), handleFetchUserTasks)
 
 export default router
