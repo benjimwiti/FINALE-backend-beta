@@ -18,3 +18,13 @@ export class UnableToFetchUserTasks extends Error {
         super(message)
     }
 }
+export class UnableToCheckOffTask extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+export class UnableToFetchTask extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}

@@ -14,7 +14,7 @@ export const createUser = async (newUser: IUser):Promise<IUserModel | undefined>
         const savedUser = await createdUser.save()
         if (savedUser) return savedUser  
     } catch (err:any) {
-        throw new UnableToRegisterUser("couldn't save the user to MongoDB")
+        throw new UnableToRegisterUser(`couldn't save the user to MongoDB ${err.message}`)
     }
 }
 
@@ -113,12 +113,12 @@ export const findUserByEmail = async (email: string) => {
 
 export const refreshTokenLogic = async (err: any, decoded: any) => {
     try {
-        const { user } = await findUserByEmail(decoded.email)
+        const { user } = await findUserByEmail(decoded?.email)
         const accessToken = jwt.sign(
             {
                 "UserInfo": {
-                    "name": user.name,
-                    "email": user.email
+                    "name": user?.name,
+                    "email": user?.email
                 }
             },
             refreshTokenSecret,

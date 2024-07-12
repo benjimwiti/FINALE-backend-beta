@@ -1,11 +1,12 @@
 import { logEvents } from "./logger"
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express"
 import { CookieIsAbsent, ErrorWhileRefreshingToken, UnableToAppendTask, UnableToAuthenticatePassword, UnableToCreateTask, UnableToDeleteAccount, UnableToFindUser, UnableToFindUserByEmail, UnableToFindUsers, UnableToRegisterUser, UnableToUpdateAccount } from "../utils/userErrors"
-import { UnableToDeleteTask, UnableToFetchUserTasks, UnableToModifyTask } from "../utils/taskErrors"
+import { UnableToCheckOffTask, UnableToDeleteTask, UnableToFetchUserTasks, UnableToModifyTask } from "../utils/taskErrors"
 
 const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, next:NextFunction) => {
     console.log('error handler')
     console.log(res.statusCode)
+    // console.log(err)
     logEvents(`${err.name}: ${err.message}\t${req.method}\t${req.url}\t${req.headers.origin}`, 'errLog.log')
    // console.log(err.stack)
 
@@ -35,9 +36,14 @@ const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
             message: err.message
         })
     } else if (err instanceof UnableToUpdateAccount) {
+        if(err.message.includes(`duplicate`)) {
+            res.status(409).json({
+                message: `user with new email already exists`
+            })
+        } else{
         res.status(400).json({
             message: err.message
-        })
+        })}
     } else if (err instanceof UnableToModifyTask) {
         res.status(400).json({
             message: err.message
@@ -70,6 +76,14 @@ const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
         res.status(401).json({
             message: err.message
         })
+    } else if (err instanceof UnableToCheckOffTask) {
+        res.status(500).json({
+            message: err.message
+        })
+    } else if (err instanceof UnableToCheckOffTask) {
+        res.status(500).json({
+            message: err.message
+        })
     }
 
 
@@ -78,6 +92,7 @@ const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
     res.status(status).json({
         message: `error Handler some undefined error occured ${err.message}`
     })
+    console.log(err.message)
 }
 }
 

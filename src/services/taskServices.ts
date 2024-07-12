@@ -1,7 +1,7 @@
 import TaskDao, { ITaskModel } from "../daos/TaskDao"
 import UserDao from "../daos/UserDao"
 import { ITask } from "../model/Task"
-import { UnableToDeleteTask, UnableToFetchUserTasks, UnableToModifyTask } from "../utils/taskErrors"
+import { UnableToCheckOffTask, UnableToDeleteTask, UnableToFetchTask, UnableToFetchUserTasks, UnableToModifyTask } from "../utils/taskErrors"
 import { UnableToCreateTask } from "../utils/userErrors"
 import { findUserById } from "./userService"
 
@@ -33,6 +33,26 @@ export const deleteTask = async (taskId: string) => {
         return modifiedTask
     } catch (error: any) {
         throw new UnableToDeleteTask(`unable to modify Task -- ${error.message}`)
+    }
+}
+
+export const checkTask = async (taskId: string) => {
+    try {
+        const completedTask = await TaskDao.findById(taskId)
+        if(completedTask) {
+            completedTask.completed =  true
+        }
+        return completedTask
+    } catch (error: any) {
+        throw new UnableToCheckOffTask(`unable to check off Task -- ${error.message}`)
+    }
+}
+export const fetchTask = async (taskId: string) => {
+    try {
+        const task = await TaskDao.findById(taskId)
+        return task
+    } catch (error: any) {
+        throw new UnableToFetchTask(`unable to check off Task -- ${error.message}`)
     }
 }
 

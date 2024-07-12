@@ -21,6 +21,9 @@ const verifyJWT = (req: any, res: any, next: NextFunction) => {
             })
             req.user = decoded.UserInfo.name
             req.email = decoded.UserInfo.email
+            req.id = decoded.UserInfo.id
+            console.log(req.user)
+            console.log(req.email)
             next()
         }
     )

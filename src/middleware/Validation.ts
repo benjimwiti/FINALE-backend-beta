@@ -44,6 +44,7 @@ export const Schemas = {
             completed: Joi.boolean(),
             labels: Joi.array(),
             userId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+            date: Joi.date()
         }),
         id: Joi.object({
             id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()

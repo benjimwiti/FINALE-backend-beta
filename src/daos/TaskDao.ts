@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose"
 import { ITask } from "../model/Task"
+import { required } from "joi"
 
 export interface objectId extends mongoose.Types.ObjectId {}
 export interface ITaskModel extends ITask, Document<string> {}
@@ -8,7 +9,7 @@ export const taskSchema = new Schema({
     title: {
         type: String,
         required: true,
-        unique: false
+        unique: true,
     },
     description: {
         type: String,
@@ -16,7 +17,8 @@ export const taskSchema = new Schema({
     },
     completed: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
     labels: {
         type: [String],
@@ -26,6 +28,10 @@ export const taskSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'User'
+    },
+    date: {
+        type: Date,
+        required: false
     }
 },
 {

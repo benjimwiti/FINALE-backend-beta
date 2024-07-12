@@ -38,17 +38,18 @@ export const handleLogin = async (req: Request, res:Response) => {
         {
             "UserInfo": {
                 "name": user.name,
-                "email": user.email
+                "email": user.email,
+                "id": id
             }
         },
         accessTokenSecret,
-        { expiresIn: '15s' }
+        { expiresIn: '7d' }
     )
 
     const refreshToken = jwt.sign(
         { "email": user.email },
         refreshTokenSecret,
-        { expiresIn: '1d' }
+        { expiresIn: '7d' }
     )
 
     // secure cookie with refresh token 
@@ -65,19 +66,31 @@ export const handleLogin = async (req: Request, res:Response) => {
 
 
 export const handleTokenRefresh = (req:Request, res:Response) => {
-    const cookies = req.cookies as CustomRefreshCookies
+    const cookies = req?.cookies as CustomRefreshCookies
     if (!cookies) throw new CookieIsAbsent(`required cookie is absent`)
-        //console.log(cookies)
+        // console.log(cookies)
     const refreshToken = cookies.jwt as string  /* "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4tM0BnbWFpbC5jb20iLCJpYXQiOjE3MjA1OTk1MjIsImV4cCI6MTcyMDY4NTkyMn0.HGJ2dfEOdULUMqAHIN1fZaQ5eOvsLwsjyoApnVaac_g" */
 
     jwt.verify(
         refreshToken,
         refreshTokenSecret,
         async (err: any, decoded: any) => {
-            console.log(decoded)
+            console.log(`refreshtoken `,refreshToken)
+            console.log(`decoded-email`,decoded)
             const accessToken = await refreshTokenLogic(err, decoded)
             res.json({ accessToken })
         }
     )
 }
+
+export const handleLogout = (req: Request, res: Response) => {
+    const cookies = req.cookies
+    if (!cookies?.jwt) return res.status(204).json({
+        message: `cookie is not present`,
+    })
+    res.clearCookie('jwt', { httpOnly: true, sameSite: 'none', secure: false })
+    res.status(200)
+    res.json({ message: 'Cookie cleared' })
+}
+
 

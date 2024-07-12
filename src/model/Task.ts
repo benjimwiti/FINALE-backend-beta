@@ -3,5 +3,6 @@ export interface ITask {
     description: string,
     completed?: boolean,
     labels: string[],
-    userId: string
+    userId: string,
+    date?: Date
 }

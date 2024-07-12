@@ -41,3 +41,54 @@
 20240710	09:31:53	5e8a25e3-409f-4945-adbc-682c7a85c708	TypeError: pchstr must contain a $ as first char	POST	/auth/login	undefined
 20240710	11:55:07	fcfc1b6e-2a86-4a60-bcf9-c529cc07d723	TypeError: Cannot read properties of undefined (reading 'name')	GET	/user	undefined
 20240710	11:56:26	cf3245a3-96a2-43e9-8c89-85cb45e4f960	TypeError: Cannot read properties of undefined (reading 'name')	GET	/user	undefined
+20240711	16:44:16	d8c9cad8-f1e0-4551-a0c8-7692a8c88896	TypeError: pchstr must contain a $ as first char	POST	/auth/login	http://localhost:5173
+20240711	21:18:59	418932b1-406f-4149-b67b-a4949aa7869b	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:22:28	7a1a03cc-df82-427d-81c6-e2d3fed85524	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:22:30	c5f515e0-d2a8-45ad-bd05-5e1a552dcd64	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:22:33	93bc9781-d348-4622-bc26-657a02cb1a2e	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:24:23	33f3cee0-ebc2-4f9d-b8a4-325d3c486210	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:24:26	9450fd6c-64eb-4208-be92-20c8c50e5526	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:24:29	65b355b1-af68-4d00-b715-d084228772c5	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:32:04	f16b3854-4606-4f8e-8a05-05089a79994f	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:32:06	c3be261e-28b2-44fc-90d0-34bff53adfd1	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:32:09	e8e4883f-f919-4dba-bd2a-1bb959262116	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:38:27	1a2634d8-7e42-448a-badf-3cf067ddf640	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:38:29	cf91e8c0-c438-4b59-92d7-bee64dedb0c0	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:38:31	8c8439dd-fa3d-48fe-adb2-7463a8514be0	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:40:01	7052fe05-4f18-4ed0-9f65-821e44a86dec	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:40:19	f4179226-7964-4cdc-8035-906c2329ca32	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:40:47	c2913609-7bcd-4f82-a22b-5b96fc49bc68	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:42:43	d18baf9e-c9b4-4265-8d1b-8db3083d0eae	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:42:46	3cb88224-c04a-49d3-a81a-561daf1ca64f	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:42:50	b47a0639-4984-41ab-8ef7-c877c1d9d9c1	Error: couldn't save the user to MongoDB	POST	/auth/register	undefined
+20240711	21:45:46	ad754da5-b888-436a-a3eb-ff029aea521b	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	21:45:48	58f10761-86ee-4b94-a61d-5147fc9aae6a	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	21:45:51	626066bc-1172-4f87-8d04-74186a46a088	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	21:49:54	7b978a9e-2448-489e-a944-e2237b40c5bf	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	21:49:56	399a5fca-cbe4-4b59-bf2f-8b8efbe2daf3	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	21:49:59	59de28f9-8e5e-4328-b5de-860502eecf7e	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:14:22	fabf2e2c-352f-468b-8d3b-7c4ed8708f74	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:14:24	33cc7994-5803-4ad3-8890-58d6365a9d9b	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:14:57	acc53b50-44b6-4380-8bd9-d0f4e283251a	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:14:59	abba6787-50e6-4596-98d8-8251727cda59	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:15:03	f894888f-2315-4dbe-ad31-d530e7dba564	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:19:14	d73f438c-7581-49c5-9e5a-9ebcc59c1cfe	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:19:16	7ba3795b-c13b-4800-9cd6-766230a23604	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:19:19	b7506300-c706-4c29-9b72-1dec4294ba2e	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:19:49	26e60c89-ec4f-4397-b789-18a879ccca32	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:19:52	d95ae5fd-5500-413a-942e-e36eef524d22	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:19:56	a08157c6-dec9-4e76-966d-ed09ff486acc	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:26:04	3c7eabe5-b223-4fbb-85c3-c4494508a966	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:26:06	89022882-4273-4244-b23a-0bf6eafcfeb4	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	22:50:58	3793a6f4-c029-4010-826c-1911d988a062	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	23:13:52	3cfc4e27-d7d1-4f43-8736-e91c3e228a67	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	23:14:47	b2cca092-5802-4d88-a3d1-20c7bde8f0ee	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	23:14:48	c61353c0-d2be-4a22-b48f-e354e21050c0	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240711	23:17:47	0aa43c52-d2ab-4802-8e10-27efcdccfe0e	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240712	00:05:42	648163ab-04be-49b0-a12f-fe096c11e4d6	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240712	00:07:55	ae97e3db-dd64-44de-8e8d-1720992ece7a	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240712	00:16:09	628737ed-978b-4acf-9610-6211cea17e73	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240712	00:20:12	0c0fe54c-df5b-4ed9-a6f9-e302782007f8	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240712	00:28:07	a64feda5-110d-48a6-b7ad-47c00265063b	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240712	00:35:18	e90296f4-e54c-4cb4-8eea-1e18cb853f7e	Error: couldn't save the user to MongoDB E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "testUser@gmail.com" }	POST	/auth/register	undefined
+20240712	00:49:00	f4721484-87fc-472f-bfd0-e8168161d3b7	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "Meet the MERN Gang" }	POST	/tasks	undefined
