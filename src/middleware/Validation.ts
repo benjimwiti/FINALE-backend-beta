@@ -32,13 +32,25 @@ export const Schemas = {
         delete: Joi.object({
             id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
         }),
+        login: Joi.object({
+            email: Joi.string().email().required(),
+            password: Joi.string().required()
+        }),
+        getAll: Joi.object({
+            userId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        })
     },
     task: {
         create: Joi.object<ITask>({
             title: Joi.string().required(),
             description: Joi.string().required(),
-            labels: Joi.array(),
+            completed: Joi.boolean(),
+            label: Joi.string(),
             userId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+            dueDate: Joi.date().required(),
+        }),
+        id: Joi.object({
+            id: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
         })
     }
 }

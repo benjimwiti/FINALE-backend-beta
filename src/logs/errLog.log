@@ -14,3 +14,30 @@
 20240709	15:10:29	41df0cb1-b6a7-48a4-9fc2-57166f954b0f	Error: ENOENT: no such file or directory, stat 'C:\Users\benzm\OneDrive\Documents\directED-main\FINALE\PIPELINE-beta\backend-piped\src\controllers\views\404.html'	GET	/favicon.ico	undefined
 20240709	15:10:34	ebcccfd9-503f-40e3-9435-fbe03070dfa1	Error: ENOENT: no such file or directory, stat 'C:\Users\benzm\OneDrive\Documents\directED-main\FINALE\PIPELINE-beta\backend-piped\src\controllers\views\404.html'	GET	/kkk	undefined
 20240709	15:10:34	8462d434-1e2a-44ad-bff2-87b86a9d3996	Error: ENOENT: no such file or directory, stat 'C:\Users\benzm\OneDrive\Documents\directED-main\FINALE\PIPELINE-beta\backend-piped\src\controllers\views\404.html'	GET	/favicon.ico	undefined
+20240709	20:11:51	7fff7954-f525-45df-ade6-32086016e921	Error: unable to update Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "john-2@gmail.com" }	PUT	/user/668ce29668d10955144bd12d	undefined
+20240709	20:16:37	63a41ee0-fac5-4f4e-9054-845ba6b59a88	Error: unable to update Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: GR-8-DB.users index: email_1 dup key: { email: "john-2@gmail.com" }	PUT	/user/668ce29668d10955144bd12d	undefined
+20240709	21:48:48	ec2c15fe-a264-43cc-88ae-bc66a713c210	Error: unable to create task; User validation failed: tasks.0.active: Path `active` is required., tasks.1.active: Path `active` is required., tasks.2.active: Path `active` is required.	POST	/tasks	undefined
+20240709	21:51:42	115c46e9-c8e3-4217-94bc-4c53e40608ba	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "to delete-2" }	POST	/tasks	undefined
+20240709	21:51:57	fbfcad30-5652-487f-a0c8-cfbdb62e046d	Error: unable to create task; User validation failed: tasks.0.completed: Path `completed` is required., tasks.1.completed: Path `completed` is required., tasks.2.completed: Path `completed` is required.	POST	/tasks	undefined
+20240709	21:57:14	a46624f4-5776-4aba-ad6e-473cfe618705	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "to delete-3" }	POST	/tasks	undefined
+20240709	22:03:49	53223fe6-31f1-4d56-a693-a178664a164d	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "to delete-3" }	POST	/tasks	undefined
+20240709	22:04:09	41237395-5be3-455b-88b8-9cc66bce144f	Error: unable to create task; User validation failed: tasks.0.completed: Path `completed` is required., tasks.1.completed: Path `completed` is required., tasks.2.completed: Path `completed` is required.	POST	/tasks	undefined
+20240709	22:05:03	57acd9c6-9854-4820-990c-cbf1b90cc92a	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "last test" }	POST	/tasks	undefined
+20240709	22:06:55	ee970e9b-9868-4725-b24e-cb10b5ef40e4	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "last test" }	POST	/tasks	undefined
+20240709	22:09:49	721fee0c-ad74-4dcd-848e-cd38616adce2	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "last test" }	POST	/tasks	undefined
+20240709	22:13:17	d20ed37c-2043-4df0-87af-2c464fe2f2ab	Error: unable to create task; User validation failed: tasks.0.completed: Path `completed` is required., tasks.1.completed: Path `completed` is required., tasks.2.completed: Path `completed` is required.	POST	/tasks	undefined
+20240709	22:21:23	ea46425f-37a4-4760-b947-a988433afffc	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "test-5" }	POST	/tasks	undefined
+20240710	07:28:49	b76c1597-2353-4c30-b1f8-d249ed7f1f7f	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "test-5" }	POST	/tasks	undefined
+20240710	07:33:31	6fb5e1cc-edf3-4f10-aae8-e5bb088345aa	Error: unable to create task; E11000 duplicate key error collection: GR-8-DB.tasks index: title_1 dup key: { title: "test-6" }	POST	/tasks	undefined
+20240710	07:37:06	501f1d25-b735-4e8c-ab07-ac1f66c0aaec	Error: unable to append task User validation failed: tasks.0.completed: Path `completed` is required., tasks.1.completed: Path `completed` is required., tasks.2.completed: Path `completed` is required.	POST	/tasks	undefined
+20240710	09:10:45	ef0995ac-8782-42b7-b77a-7cf5321bc737	AssertionError: Invalid memoryCost, must be between 1024 and 4294967295.	POST	/auth/register	undefined
+20240710	09:11:00	15d866f7-c9e7-40f2-ae7b-ec7f77d7cd56	AssertionError: Invalid memoryCost, must be between 1024 and 4294967295.	POST	/auth/register	undefined
+20240710	09:13:18	edd6495a-4ddd-4cc6-9784-bcde12337147	AssertionError: Invalid memoryCost, must be between 1024 and 4294967295.	POST	/auth/register	undefined
+20240710	09:13:42	dfc071f3-8c52-40eb-adb1-a57829693d27	AssertionError: Invalid memoryCost, must be between 1024 and 4294967295.	POST	/auth/register	undefined
+20240710	09:22:46	367131b8-4884-47f2-951a-956ef1d7e5db	AssertionError: Invalid memoryCost, must be between 1024 and 4294967295.	POST	/auth/register	undefined
+20240710	09:24:08	c5ddbd58-5f15-4e64-91e6-281410ea22a3	Error: Memory allocation error	POST	/auth/register	undefined
+20240710	09:25:16	9f084992-0123-4d48-928c-b44e622d133f	TypeError: pchstr must contain a $ as first char	POST	/auth/login	undefined
+20240710	09:31:19	efe342f1-92c5-4be3-a6aa-b5c5601a9974	TypeError: pchstr must contain a $ as first char	POST	/auth/login	undefined
+20240710	09:31:53	5e8a25e3-409f-4945-adbc-682c7a85c708	TypeError: pchstr must contain a $ as first char	POST	/auth/login	undefined
+20240710	11:55:07	fcfc1b6e-2a86-4a60-bcf9-c529cc07d723	TypeError: Cannot read properties of undefined (reading 'name')	GET	/user	undefined
+20240710	11:56:26	cf3245a3-96a2-43e9-8c89-85cb45e4f960	TypeError: Cannot read properties of undefined (reading 'name')	GET	/user	undefined
