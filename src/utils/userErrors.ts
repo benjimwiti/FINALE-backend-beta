@@ -26,3 +26,50 @@ export class UnableToDeleteAccount extends Error {
         super(message)
     }
 }
+export class UnableToUpdateAccount extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+export class UnableToAppendTask extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+export class UnableToAuthenticatePassword extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+export class UnableToFindUserByEmail extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+
+export class CookieIsAbsent extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+
+export class ErrorWhileRefreshingToken extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+export class ErrorReadingAvatarImageFile extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+export class ErrorUnlinkingAvatarImageFile extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+export class UnableToRegisterAvatar extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}

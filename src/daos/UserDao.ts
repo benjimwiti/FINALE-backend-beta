@@ -18,7 +18,15 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    tasks: [taskSchema]
+    tasks: {
+        type: [taskSchema] ,
+        default: []
+    },
+    avatar: {
+        type: String,
+        required: false,
+        default: ''
+    }
 },
 {
     timestamps: true,

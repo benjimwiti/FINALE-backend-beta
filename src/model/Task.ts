@@ -1,6 +1,9 @@
 export interface ITask {
     title: string,
     description: string,
-    labels: string[],
-    userId: string
+    completed?: boolean,
+    label: string,
+    userId: string,
+    dueDate: Date
 }
+
