@@ -16,7 +16,7 @@ export const createUser = async (newUser: IUser):Promise<IUserModel | undefined>
         const savedUser = await createdUser.save()
         if (savedUser) return savedUser  
     } catch (err:any) {
-        throw new UnableToRegisterUser("couldn't save the user to MongoDB")
+        throw new UnableToRegisterUser(`couldn't save the user to MongoDB ${err.message} `)
     } 
 }
 
