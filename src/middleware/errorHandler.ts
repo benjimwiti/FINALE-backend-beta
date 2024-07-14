@@ -75,6 +75,7 @@ const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
 
     
     else {
+    console.log(err)
     res.status(status).json({
         message: `error Handler some undefined error occured ${err.message}`
     })
