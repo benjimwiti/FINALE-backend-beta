@@ -60,7 +60,6 @@ export const deleteUserAccount = async (id: string) => {
 }
 
 
-
 export const updateUserAccount = async (_id: string, updates: IUserUpdate) => {
     try {
         const {name, email, password} = updates
@@ -103,6 +102,15 @@ export const findUserByEmail = async (email: string) => {
         throw new UnableToFindUserByEmail(`unable to find user by email ${error.message}`)
     }
 }
+
+export const returnMinimalUserDetails = async (user: IUserModel) => {
+    console.log(`returning minimal user details`)
+    const { _id, name, email, avatar} = user
+    const minimalUserDetails = { _id, name, email, avatar}
+    return minimalUserDetails
+    
+}
+
 
 export const registerProfilePhoto = async (userId: string, fileName: string) => {
     try {

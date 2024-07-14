@@ -3,7 +3,7 @@ import { findUserProfilePic, getContentType, upload } from "../services/imageSer
 import { Response, Request } from "express";
 import fs from 'fs'
 import path from "path";
-import { registerProfilePhoto } from "../services/userService";
+import { registerProfilePhoto, returnMinimalUserDetails } from "../services/userService";
 
 export const handleImageUpload = (req:Request, res:Response) => {
     console.log(`tryna upload the image`)
@@ -16,10 +16,11 @@ export const handleImageUpload = (req:Request, res:Response) => {
             res.status(400).send({ message: "No file selected!" });
         } else {
             const updatedUser = await registerProfilePhoto(userId, req.file.filename)
+            const userDetails = await returnMinimalUserDetails(updatedUser)
             res.send({
             message: "File uploaded!",
             file: `avatars/${req.file.filename}`,
-            updatedUser
+            userDetails
             });
         }
         }

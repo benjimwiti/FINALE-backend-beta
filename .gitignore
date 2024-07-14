@@ -8,3 +8,4 @@ node_modules
 .env
 readME.MD
 /src/logs
+/src/avatar

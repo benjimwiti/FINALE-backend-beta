@@ -4,5 +4,5 @@ export interface ITask {
     completed?: boolean,
     labels: string[],
     userId: string,
-    date?: Date
+    dueDate?: Date
 }

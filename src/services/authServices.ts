@@ -2,7 +2,7 @@ import argon2 from "argon2"
 import UserDao from "../daos/UserDao"
 import { ErrorWhileRefreshingToken, UnableToAuthenticatePassword } from "../utils/userErrors"
 import jwt from "jsonwebtoken"
-import { findUserByEmail } from "./userService"
+import { findUserByEmail, returnMinimalUserDetails } from "./userService"
 import { refreshTokenSecret } from "../config/TSenv"
 
 export const authenticatePassword = async (userId:string , password:string) => {
@@ -15,10 +15,19 @@ export const authenticatePassword = async (userId:string , password:string) => {
         throw new UnableToAuthenticatePassword(`unable to authenticate user ${error.message}`)
     }
 }
+export const handlingUnauthorizedUser = async (passwordIsValid: boolean) => {
+    if(passwordIsValid) {
+        const answer = passwordIsValid ? `yes it is` : `no its not`
+        return console.log(`Is password valid ? ${answer}.`)
+    } else {
+    throw new UnableToAuthenticatePassword(`incorrect password }`)
+    }
+}
 
 export const refreshTokenLogic = async (err: any, decoded: any) => {
     try {
         const { user } = await findUserByEmail(decoded?.email)
+        const userDetails = await returnMinimalUserDetails(user)
         const accessToken = jwt.sign(
             {
                 "UserInfo": {
@@ -29,7 +38,7 @@ export const refreshTokenLogic = async (err: any, decoded: any) => {
             refreshTokenSecret,
             { expiresIn: '1d' }
         )
-        return accessToken
+        return { accessToken, user: {...userDetails} }
         
     } catch (error: any) {
         throw new ErrorWhileRefreshingToken(`unable to refresh access Token ${error.message}`)

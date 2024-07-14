@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express"
-import {createUser, findUserByEmail} from "../services/userService"
-import { authenticatePassword,  pwdHasher,  refreshTokenLogic } from "../services/authServices"
+import {createUser, findUserByEmail, returnMinimalUserDetails} from "../services/userService"
+import { authenticatePassword,  handlingUnauthorizedUser,  pwdHasher,  refreshTokenLogic } from "../services/authServices"
 import { CookieIsAbsent } from "../utils/userErrors"
 import argon2 from 'argon2'
 import jwt from 'jsonwebtoken'
@@ -26,6 +26,9 @@ export const handleLogin = async (req: Request, res:Response) => {
 
     const { user, id } = await findUserByEmail(email)
     const isValid = await authenticatePassword(id, password)
+    await handlingUnauthorizedUser(isValid)
+    const userDetails = await returnMinimalUserDetails(user)
+    console.log(userDetails)
 
 
     const accessToken = jwt.sign(
@@ -48,14 +51,14 @@ export const handleLogin = async (req: Request, res:Response) => {
 
     // secure cookie with refresh token 
     res.cookie('jwt', refreshToken, {
-        httpOnly: true, //accessible only by web server 
+        httpOnly: false, //accessible only by web server 
         secure: false, //https
         sameSite: 'none', //cross-site cookie 
-        maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match rT
+        maxAge: 100 * 365 * 24 * 60 * 60 * 1000 //cookie expiry: set to match rT
     })
 
-    // Send accessToken containing username and roles 
-    res.json({ accessToken })
+
+    res.json({ accessToken, user: {...userDetails} })
 }
 
 
@@ -71,8 +74,8 @@ export const handleTokenRefresh = (req:Request, res:Response) => {
         async (err: any, decoded: any) => {
             console.log(`refreshtoken `,refreshToken)
             console.log(`decoded-email`,decoded)
-            const accessToken = await refreshTokenLogic(err, decoded)
-            res.json({ accessToken })
+            const { accessToken, user } = await refreshTokenLogic(err, decoded)
+            res.json({ accessToken, user })
         }
     )
 }

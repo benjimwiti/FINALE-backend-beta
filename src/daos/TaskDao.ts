@@ -29,7 +29,7 @@ export const taskSchema = new Schema({
         required: true,
         ref: 'User'
     },
-    date: {
+    dueDate: {
         type: Date,
         required: false
     }
