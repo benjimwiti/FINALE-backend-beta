@@ -41,7 +41,7 @@ export const loginUser = async (req: Request, res: Response) => {
         
         res.cookie("jwt", token,{
             httpOnly: true, // Accessible only by the web server
-            secure: false, // Consider setting to true in production with HTTPS
+            secure: true, // Consider setting to true in production with HTTPS
             sameSite: 'none', // Cross-site cookie
             maxAge: 7 * 24 * 60 * 60 * 1000 // Cookie expiry: set to match refreshToken expiry
           })
