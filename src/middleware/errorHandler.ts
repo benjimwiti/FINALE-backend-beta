@@ -5,7 +5,7 @@ import { UnableToDeleteTask, UnableToFetchUserTasks, UnableToModifyTask } from "
 
 const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, next:NextFunction) => {
     console.log('error handler')
-    console.log(res.statusCode)
+    console.log(err)
     logEvents(`${err.name}: ${err.message}\t${req.method}\t${req.url}\t${req.headers.origin}`, 'errLog.log')
    // console.log(err.stack)
 
@@ -15,14 +15,16 @@ const errorHandler: ErrorRequestHandler = (err, req: Request, res: Response, nex
     if(err instanceof UnableToRegisterUser) {
         res.status(400)
         res.json({
-            message: err.message,
+            message: err,
             isError: true 
         })
     } else if (err instanceof UnableToCreateTask) {
+        console.log(err)
         res.status(400).json({
             message: err.message
         })
     } else if (err instanceof UnableToFindUser) {
+        console.log(err)
         res.status(400).json({
             message: err.message
         })
