@@ -43,7 +43,7 @@ test.describe(`User CRUD operations`, ()=> {
         const res = await response.json()
         // console.log(accessToken)
         accessToken = res.accessToken
-        expect(response.status()).toBe(200)
+        expect(response.status()).toBe(201)
     })
 
     test(`fetch User Account Details`, async({request}) => {

@@ -26,7 +26,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:8000',
+    baseURL: 'https://gr-8-api.onrender.com',
      /* Extra HTTP headers to include in all requests */
     extraHTTPHeaders: {
       //'Accept': 'application/vnd.github.v3+json',
